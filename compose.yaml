@@ -1,0 +1,14 @@
+services:
+  web:
+    image: vitorlima704/cicd
+    container_name: cicd
+    ports:
+      - "8080:80"
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=20
+    command: cicd
